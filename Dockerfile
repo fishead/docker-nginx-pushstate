@@ -1,4 +1,8 @@
 FROM nginx:alpine
 LABEL maintainer zhchuan7@gmail.com
 
-COPY ./nginx.default.conf /etc/nginx/conf.d/default.conf
+ENV NGINX_PORT 80
+
+COPY ./nginx.conf.template /etc/nginx/conf.d/default.conf.template
+COPY ./docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
